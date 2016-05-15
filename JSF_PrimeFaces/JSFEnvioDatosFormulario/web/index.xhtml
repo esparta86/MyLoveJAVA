@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="txtNombre" value="Nombre"></h:outputLabel>
+                <h:inputText id="txtNombre" label="Nombre" required="true" value="#{mbTPersona.nombre}"></h:inputText>
+                <h:message for="txtNombre"></h:message>
+                
+                <h:outputLabel for="txtApellidoPaterno" value="ApellidoPaterno"></h:outputLabel>
+                <h:inputText id="txtApellidoPaterno" label="Apellido Paterno" required="true" value="#{mbTPersona.apellidoPaterno}"></h:inputText>
+                <h:message for="txtApellidoPaterno"></h:message>
+                
+                <h:outputLabel for="txtApellidoMaterno" value="ApellidoMaterno"></h:outputLabel>
+                <h:inputText id="txtApellidoMaterno" label="Apellido Materno" required="true" value="#{mbTPersona.apellidoMaterno}"></h:inputText>
+                <h:message for="txtApellidoMaterno"></h:message>
+                
+                <h:outputLabel for="radioSexo" value="Sexo"></h:outputLabel>
+                <h:selectOneRadio id="radioSexo" label="sexo" value="#{mbTPersona.sexo}">
+                    <f:selectItem itemLabel="Masculino" itemValue="M"></f:selectItem>
+                    <f:selectItem itemLabel="Femenino" itemValue="F"></f:selectItem>
+                </h:selectOneRadio>
+                <h:message for="radioSexo"></h:message>
+                
+                <h:outputLabel for="cbxCiudad" value="Ciudad"></h:outputLabel>
+                <h:selectOneMenu  id="cbxCiudad" label="Ciudad" value="#{mbTPersona.ciudad}">
+                    <f:selectItem itemLabel="" itemValue=""></f:selectItem>
+                    <f:selectItem itemLabel="talavera" itemValue="talavera"></f:selectItem>
+                    <f:selectItem itemLabel="abankay" itemValue="abankay"></f:selectItem>
+                    <f:selectItem itemLabel="cusco" itemValue="cusco"></f:selectItem>
+                </h:selectOneMenu>
+                <h:message for="cbxCiudad"></h:message>
+                
+                
+                <h:commandButton id="btnEnviar" action="envio" value="enviar Datos"></h:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
