@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>VALIDACIONES JSF</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Nombres"></h:outputLabel>                
+                <h:inputText id="textNombre" value="#{personaBean.persona.nombre}" required="true" label="Nombre Requerido"/>
+                <h:messages for="textNombre"></h:messages>
+                
+                <h:outputLabel value="Apellidos"></h:outputLabel>
+                <h:inputText id="txtApellido" value="#{personaBean.persona.apellido}">
+                </h:inputText>
+                
+                <h:outputLabel value="Edad">
+                    <h:inputText id="txtEdad" value="#{personaBean.persona.edad}" label="(1-18)">
+                        <f:validateDoubleRange for="txtEdad" minimum="1" maximum="18"></f:validateDoubleRange>
+                    </h:inputText>
+                </h:outputLabel>
+                
+                <h:outputLabel value="Sexo"></h:outputLabel>
+                <h:inputText value="#{personaBean.persona.sexo}"></h:inputText>
+               <!-- <h:selectOneMenu value="#{personaBean.persona.sexo}">
+                    <f:selectItem itemValue="M" itemLabel="Maculino"></f:selectItem>
+                    <f:selectItem itemValue="F" itemLabel="Femenino"></f:selectItem>
+                </h:selectOneMenu>
+               -->
+            </h:panelGrid>
+            <h:commandButton value="Agregar" actionListener="#{personaBean.registrarPersona()}"></h:commandButton>
+            <h:commandButton value="Agregar" actionListener="#{personaBean.registrarPersona()}"></h:commandButton>
+            
+            <h:dataTable value="#{personaBean.listPersona}" var="pers" rendered="#{personaBean.listPersona.size()>0}">
+                <h:column>
+                    <f:facet name="header">
+                       <h:outputLabel value="Nombres"></h:outputLabel> 
+                    </f:facet>
+                    <h:outputLabel value="#{pers.nombre}"></h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                       <h:outputLabel value="Apellido"></h:outputLabel> 
+                    </f:facet>
+                      <h:outputLabel value="#{pers.apellido}"></h:outputLabel>
+                </h:column>
+                 <h:column>
+                     <f:facet name="header">
+                       <h:outputLabel value="Sexo"></h:outputLabel> 
+                    </f:facet>
+                      <h:outputLabel value="#{pers.sexo}"></h:outputLabel>
+                </h:column>
+                
+                <h:column>
+                    <h:commandLink value="Eliminar" actionListener="#{personaBean.eliminarPersona(pers)}"></h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

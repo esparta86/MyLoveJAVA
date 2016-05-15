@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="http://xmlns.jcp.org/jsf/html"
+          xmlns:p="http://primefaces.org/ui"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:panel id="mainPanel">
+            <h:form id="mainForm">
+                <p:commandButton value="LLamar a modal 1" oncomplete="PF('modalXYZ').show();" ></p:commandButton>
+            </h:form>
+            <p:dialog header="Modal 1" widgetVar="modalXYZ" modal="true" width="1000px">
+                <p:commandButton value="llamar a segundo Modal" oncomplete="PF('modal2').show();"></p:commandButton>
+                <h:form id="modal1Form">
+                    <p:dataTable value="#{carsBeans.carsLista}" var="car">
+                        <p:column headerText="id">
+                            <p:outputLabel value="#{car.idCar}"></p:outputLabel>
+                        </p:column>
+                        <p:column headerText="Marca">
+                            <p:outputLabel value="#{car.marca}"></p:outputLabel>
+                        </p:column>
+                         <p:column headerText="Año">
+                             <p:outputLabel value="#{car.anio}"></p:outputLabel>
+                        </p:column>
+                        <p:column headerText="Color">
+                            <p:outputLabel value="#{car.color}"></p:outputLabel>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:dialog>
+            
+            <p:dialog header="Modal 2" widgetVar="modal2" modal="true" width="1000px">
+                <h:form id="formModal2">
+                <p:dataTable value="#{carsBeans.listaColor}" var="color">
+                    <p:column>
+                        <p:commandButton value="#{color}" action="#{carsBeans.establecerColor(color)}" update="@form" process="@this" oncomplete="PF('modal2').hide();">
+                            
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                </h:form>
+            </p:dialog>
+                
+            
+        </p:panel>
+    </h:body>
+</html>
+

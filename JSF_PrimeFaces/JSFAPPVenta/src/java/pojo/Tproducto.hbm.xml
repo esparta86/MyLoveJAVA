@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-mar-2016 22:38:14 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojo.Tproducto" table="tproducto" catalog="dbappventa">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="idProducto" />
+            <generator class="identity" />
+        </id>
+        <property name="codigoBarras" type="string">
+            <column name="codigoBarras" length="70" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="700" not-null="true" />
+        </property>
+        <property name="precioVentaUnitario" type="big_decimal">
+            <column name="precioVentaUnitario" precision="18" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <set name="tventadetalles" inverse="true">
+            <key>
+                <column name="idProducto" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Tventadetalle" />
+        </set>
+    </class>
+</hibernate-mapping>
